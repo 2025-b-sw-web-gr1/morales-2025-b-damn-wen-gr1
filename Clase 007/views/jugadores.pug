@@ -1,0 +1,52 @@
+extends layout
+
+block content
+  .page-header
+    .container
+      h2 Plantel Actual
+      p Temporada 2024-2025
+  
+  section.players
+    .container
+      .players-grid
+        each jugador in jugadores
+          .player-card
+            .player-number= jugador.numero
+            .player-info
+              h3.player-name= jugador.nombre
+              p.player-position= jugador.posicion
+      
+      .team-note
+        h3 Jugadores Destacados en la Historia
+        .legends-grid
+          .legend-card
+            .legend-image
+              .legend-placeholder
+                span.legend-initial A
+            .legend-info
+              h4 Álex Aguinaga
+              p El maestro. Leyenda absoluta del club y del fútbol ecuatoriano. Jugó más de 15 años en LDU y es considerado uno de los mejores mediocampistas de la historia del país.
+          
+          .legend-card
+            .legend-image
+              .legend-placeholder
+                span.legend-initial U
+            .legend-info
+              h4 Ulises de la Cruz
+              p Defensa histórico que brilló en LDU antes de triunfar en Europa. Campeón con el club en múltiples ocasiones y símbolo de entrega y pasión.
+          
+          .legend-card
+            .legend-image
+              .legend-placeholder
+                span.legend-initial J
+            .legend-info
+              h4 José Francisco Cevallos
+              p Presidente histórico del club durante la época más gloriosa. Bajo su gestión, LDU conquistó la Copa Libertadores 2008.
+          
+          .legend-card
+            .legend-image
+              .legend-placeholder
+                span.legend-initial E
+            .legend-info
+              h4 Enrique Vera
+              p Goleador histórico y figura clave en la conquista de múltiples títulos nacionales. Su habilidad y olfato goleador lo convirtieron en ídolo de la hinchada.

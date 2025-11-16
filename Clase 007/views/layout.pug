@@ -1,0 +1,27 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= titulo
+    link(rel='stylesheet', href='/css/styles.css')
+  body
+    header.header
+      .container
+        .header-content
+          .logo-container
+            img.logo-img(src='/images/LOGOS_5TA._ESTRELLA_I.png', alt='Logo LDU')
+            h1.logo Liga Deportiva Universitaria
+          nav.nav
+            a(href='/') Inicio
+            a(href='/historia') Historia
+            a(href='/jugadores') Jugadores
+            a(href='/palmares') Palmarés
+    
+    main.main
+      block content
+    
+    footer.footer
+      .container
+        p &copy; 2025 Liga Deportiva Universitaria de Quito. Rey de Copas.
+        p.slogan ¡Arriba el alba!

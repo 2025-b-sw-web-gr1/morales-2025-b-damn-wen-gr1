@@ -1,0 +1,53 @@
+extends layout
+
+block content
+  .page-header
+    .container
+      h2 Palmarés
+      p Los trofeos que nos hacen el Rey de Copas
+  
+  section.trophies
+    .container
+      .trophy-section
+        h3.trophy-section-title Títulos Internacionales
+        .trophy-list
+          each titulo in titulos.internacionales
+            .trophy-item.internacional
+              .trophy-icon 🏆
+              .trophy-details
+                h4= titulo.nombre
+                p.trophy-count= titulo.cantidad + (titulo.cantidad === 1 ? ' título' : ' títulos')
+                if titulo.anio
+                  p.trophy-year= 'Año: ' + titulo.anio
+      
+      .trophy-section
+        h3.trophy-section-title Títulos Nacionales
+        .trophy-list
+          each titulo in titulos.nacionales
+            .trophy-item.nacional
+              .trophy-icon 🥇
+              .trophy-details
+                h4= titulo.nombre
+                p.trophy-count= titulo.cantidad + (titulo.cantidad === 1 ? ' título' : ' títulos')
+      
+      .achievement-highlight
+        h3 El Logro Más Importante
+        .highlight-content
+          h4 Copa Libertadores 2008
+          p El 2 de julio de 2008, Liga Deportiva Universitaria escribió el capítulo más glorioso de su historia y del fútbol ecuatoriano. En el mítico Estadio Maracaná de Río de Janeiro, LDU venció por penales a Fluminense de Brasil y se coronó campeón de la Copa Libertadores de América.
+          p Esta hazaña histórica no solo representó el primer título continental para LDU, sino también para todo el fútbol ecuatoriano. El equipo dirigido por Edgardo Bauza demostró calidad, garra y determinación durante todo el torneo, derrotando a grandes equipos del continente.
+          p La conquista de la Libertadores abrió las puertas para más éxitos internacionales: la Copa Sudamericana 2009 y la Recopa Sudamericana 2010, consolidando a LDU como el Rey de Copas del Ecuador.
+          
+          .stats-grid
+            .stat-box
+              span.stat-big 112
+              span.stat-label Años de historia
+            .stat-box
+              span.stat-big 3
+              span.stat-label Copas Internacionales
+            .stat-box
+              span.stat-big 16
+              span.stat-label Títulos Nacionales
+            .stat-box
+              span.stat-big 1
+              span.stat-label Club en Ecuador con Libertadores

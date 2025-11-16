@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Mental - W3C</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin: 0 0 60px 0;
+            text-align: center;
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 1600px;
+            height: auto;
+            min-height: 1100px;
+            margin: 0 auto;
+            padding: 50px 20px 100px 20px;
+        }
+
+        .central-node {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 4px solid #005A9C;
+            color: #005A9C;
+            padding: 50px 60px;
+            border-radius: 50%;
+            box-shadow: 0 8px 30px rgba(0, 90, 156, 0.2);
+            text-align: center;
+            z-index: 10;
+            width: 280px;
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.02);
+            }
+        }
+
+        .central-node h2 {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .central-node p {
+            font-size: 0.85em;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .branch {
+            position: absolute;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 350px;
+            transition: all 0.3s ease;
+            border-left: 4px solid #005A9C;
+        }
+
+        .branch:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+        }
+
+        .branch h3 {
+            color: #005A9C;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .branch p, .branch ul {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.8;
+        }
+
+        .branch ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .branch li {
+            margin-bottom: 8px;
+        }
+
+        .branch strong {
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        /* Líneas conectoras */
+        .line {
+            position: absolute;
+            background: rgba(0, 90, 156, 0.2);
+            transform-origin: 0 50%;
+            z-index: 1;
+        }
+
+        /* Posiciones de las ramas */
+        .branch1 {
+            top: 100px;
+            left: 150px;
+        }
+
+        .branch2 {
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .branch3 {
+            top: 100px;
+            right: 150px;
+        }
+
+        .branch4 {
+            top: 700px;
+            right: 150px;
+        }
+
+        .branch5 {
+            top: 500px;
+            left: 150px;
+        }
+
+        .footer {
+            color: #7f8c8d;
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                height: auto;
+                position: relative;
+            }
+
+            .branch {
+                position: relative;
+                margin: 20px;
+                left: 0 !important;
+                right: 0 !important;
+                top: 0 !important;
+                bottom: 0 !important;
+                transform: none !important;
+                max-width: 100%;
+            }
+
+            .central-node {
+                position: relative;
+                margin: 20px auto;
+                left: 0;
+                top: 0;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Mapa Mental: W3C (World Wide Web Consortium)</h1>
+    
+    <div class="container">
+        <!-- Nodo Central -->
+        <div class="central-node">
+            <h2>W3C</h2>
+            <p>World Wide Web Consortium</p>
+        </div>
+
+        <!-- Rama 1: ¿Qué es la W3C? -->
+        <div class="branch branch1">
+            <h3>¿Qué es la W3C?</h3>
+            <p>
+                Organización internacional fundada en octubre de 1994 por 
+                Tim Berners-Lee en el MIT Laboratory for Computer Science. 
+                Su función principal es desarrollar protocolos y directrices que 
+                aseguren el crecimiento sostenible de la World Wide Web a largo plazo.
+            </p>
+        </div>
+
+        <!-- Rama 2: Misión -->
+        <div class="branch branch2">
+            <h3>¿Cuál es su misión?</h3>
+            <p>
+                Llevar la Web hacia su máximo potencial mediante la creación de 
+                estándares técnicos y pautas que garanticen:
+            </p>
+            <ul>
+                <li>Interoperabilidad entre diferentes plataformas</li>
+                <li>Accesibilidad universal para todas las personas</li>
+                <li>Usabilidad optimizada en diversos dispositivos</li>
+                <li>Apertura y neutralidad de la Web</li>
+            </ul>
+        </div>
+
+        <!-- Rama 3: Estándares que desarrolla -->
+        <div class="branch branch3">
+            <h3>¿Qué estándares desarrolla?</h3>
+            <ul>
+                <li><strong>HTML</strong> - Lenguaje de marcado para estructurar contenido web</li>
+                <li><strong>CSS</strong> - Hojas de estilo para diseño y presentación visual</li>
+                <li><strong>WCAG</strong> - Directrices de accesibilidad para contenido web</li>
+                <li><strong>WAI-ARIA</strong> - Estándar para aplicaciones web accesibles</li>
+                <li><strong>SVG</strong> - Formato de gráficos vectoriales escalables</li>
+                <li><strong>XML</strong> - Lenguaje de marcado para intercambio de datos</li>
+                <li><strong>DOM</strong> - Interfaz de programación para documentos web</li>
+            </ul>
+        </div>
+
+        <!-- Rama 4: Quiénes participan -->
+        <div class="branch branch4">
+            <h3>¿Quiénes participan en ella?</h3>
+            <p>La W3C cuenta con la participación de:</p>
+            <ul>
+                <li><strong>Organizaciones miembro</strong> - Más de 400 empresas, instituciones educativas y gubernamentales</li>
+                <li><strong>Personal dedicado</strong> - Equipo técnico permanente distribuido globalmente</li>
+                <li><strong>Comunidad pública</strong> - Desarrolladores y expertos que contribuyen abiertamente</li>
+                <li><strong>Grupos de trabajo</strong> - Especialistas que desarrollan especificaciones técnicas</li>
+            </ul>
+            <p style="margin-top: 12px; font-size: 0.88em;">
+                Entre los miembros destacados: Google, Microsoft, Mozilla Foundation, 
+                Apple, IBM, Adobe, Oracle, entre otros.
+            </p>
+        </div>
+
+        <!-- Rama 5: Importancia para desarrolladores -->
+        <div class="branch branch5">
+            <h3>¿Por qué es importante para desarrolladores web?</h3>
+            <ul>
+                <li>Garantiza compatibilidad entre navegadores y dispositivos</li>
+                <li>Establece buenas prácticas de desarrollo</li>
+                <li>Facilita el mantenimiento y escalabilidad del código</li>
+                <li>Promueve la creación de sitios accesibles e inclusivos</li>
+                <li>Asegura la longevidad de las aplicaciones web</li>
+                <li>Proporciona documentación técnica de referencia</li>
+                <li>Impulsa la innovación tecnológica responsable</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Clase 006</strong> - W3C: El organismo internacional de estándares web</p>
+        <p>Ingeniería de Sistemas - Desarrollo Web</p>
+    </div>
+</body>
+</html>

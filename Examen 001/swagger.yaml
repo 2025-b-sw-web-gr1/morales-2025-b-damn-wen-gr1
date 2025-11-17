@@ -1,0 +1,629 @@
+openapi: 3.0.0
+info:
+  title: JSONPlaceholder API
+  description: Documentación completa de la API REST de JSONPlaceholder para fines educativos
+  version: 1.0.0
+  contact:
+    name: Soporte API
+    email: soporte@jsonplaceholder.com
+servers:
+  - url: https://jsonplaceholder.typicode.com
+    description: Servidor principal de JSONPlaceholder
+
+paths:
+  /posts:
+    get:
+      summary: Obtener todos los posts
+      description: Retorna una lista completa de todos los posts disponibles
+      tags:
+        - Posts
+      responses:
+        '200':
+          description: Lista de posts obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+    post:
+      summary: Crear nuevo post
+      description: Crea un nuevo post en el sistema
+      tags:
+        - Posts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostCreate'
+      responses:
+        '201':
+          description: Post creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+
+  /posts/{id}:
+    get:
+      summary: Obtener post por ID
+      description: Retorna un post específico según su ID
+      tags:
+        - Posts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del post a obtener
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Post obtenido exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '404':
+          description: Post no encontrado
+    put:
+      summary: Actualizar post completo
+      description: Actualiza todos los campos de un post existente
+      tags:
+        - Posts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del post a actualizar
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '200':
+          description: Post actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '404':
+          description: Post no encontrado
+    patch:
+      summary: Actualizar título de post
+      description: Actualiza parcialmente un post (solo los campos enviados)
+      tags:
+        - Posts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del post a actualizar
+          schema:
+            type: integer
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostPatch'
+      responses:
+        '200':
+          description: Post actualizado parcialmente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '404':
+          description: Post no encontrado
+    delete:
+      summary: Eliminar post
+      description: Elimina un post del sistema
+      tags:
+        - Posts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del post a eliminar
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Post eliminado exitosamente
+        '404':
+          description: Post no encontrado
+
+  /comments:
+    get:
+      summary: Obtener todos los comentarios
+      description: Retorna una lista completa de todos los comentarios
+      tags:
+        - Comments
+      parameters:
+        - name: postId
+          in: query
+          required: false
+          description: Filtrar comentarios por ID de post
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Lista de comentarios obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Comment'
+    post:
+      summary: Crear nuevo comentario
+      description: Crea un nuevo comentario asociado a un post
+      tags:
+        - Comments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentCreate'
+      responses:
+        '201':
+          description: Comentario creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+
+  /albums:
+    get:
+      summary: Obtener todos los álbumes
+      description: Retorna una lista completa de todos los álbumes
+      tags:
+        - Albums
+      responses:
+        '200':
+          description: Lista de álbumes obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Album'
+    post:
+      summary: Crear nuevo álbum
+      description: Crea un nuevo álbum en el sistema
+      tags:
+        - Albums
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AlbumCreate'
+      responses:
+        '201':
+          description: Álbum creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Album'
+
+  /albums/{id}:
+    get:
+      summary: Obtener álbum por ID
+      description: Retorna un álbum específico según su ID
+      tags:
+        - Albums
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del álbum a obtener
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Álbum obtenido exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Album'
+        '404':
+          description: Álbum no encontrado
+
+  /photos:
+    get:
+      summary: Obtener todas las fotos
+      description: Retorna una lista completa de todas las fotos
+      tags:
+        - Photos
+      parameters:
+        - name: albumId
+          in: query
+          required: false
+          description: Filtrar fotos por ID de álbum
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Lista de fotos obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Photo'
+
+  /todos:
+    get:
+      summary: Obtener todas las tareas
+      description: Retorna una lista completa de todas las tareas
+      tags:
+        - Todos
+      responses:
+        '200':
+          description: Lista de tareas obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Todo'
+    post:
+      summary: Crear nueva tarea
+      description: Crea una nueva tarea en el sistema
+      tags:
+        - Todos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TodoCreate'
+      responses:
+        '201':
+          description: Tarea creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+
+  /todos/{id}:
+    get:
+      summary: Obtener tarea por ID
+      description: Retorna una tarea específica según su ID
+      tags:
+        - Todos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID de la tarea a obtener
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Tarea obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Todo'
+        '404':
+          description: Tarea no encontrada
+
+  /users:
+    get:
+      summary: Obtener todos los usuarios
+      description: Retorna una lista completa de todos los usuarios
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Lista de usuarios obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+  /users/{id}:
+    get:
+      summary: Obtener usuario por ID
+      description: Retorna un usuario específico según su ID
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del usuario a obtener
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Usuario obtenido exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Usuario no encontrado
+
+components:
+  schemas:
+    Post:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        userId:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "sunt aut facere repellat provident"
+        body:
+          type: string
+          example: "quia et suscipit suscipit recusandae consequuntur"
+      required:
+        - id
+        - userId
+        - title
+        - body
+
+    PostCreate:
+      type: object
+      properties:
+        userId:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "foo"
+        body:
+          type: string
+          example: "bar"
+      required:
+        - userId
+        - title
+        - body
+
+    PostPatch:
+      type: object
+      properties:
+        title:
+          type: string
+          example: "updated title"
+
+    Comment:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        postId:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "id labore ex et quam laborum"
+        email:
+          type: string
+          format: email
+          example: "Eliseo@gardner.biz"
+        body:
+          type: string
+          example: "laudantium enim quasi est quidem"
+      required:
+        - id
+        - postId
+        - name
+        - email
+        - body
+
+    CommentCreate:
+      type: object
+      properties:
+        postId:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "test"
+        email:
+          type: string
+          format: email
+          example: "test@example.com"
+        body:
+          type: string
+          example: "Nice!"
+      required:
+        - postId
+        - name
+        - email
+        - body
+
+    Album:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        userId:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "quidem molestiae enim"
+      required:
+        - id
+        - userId
+        - title
+
+    AlbumCreate:
+      type: object
+      properties:
+        userId:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "Vacation"
+      required:
+        - userId
+        - title
+
+    Photo:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        albumId:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "accusamus beatae ad facilis"
+        url:
+          type: string
+          format: uri
+          example: "https://via.placeholder.com/600/92c952"
+        thumbnailUrl:
+          type: string
+          format: uri
+          example: "https://via.placeholder.com/150/92c952"
+      required:
+        - id
+        - albumId
+        - title
+        - url
+        - thumbnailUrl
+
+    Todo:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        userId:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "delectus aut autem"
+        completed:
+          type: boolean
+          example: false
+      required:
+        - id
+        - userId
+        - title
+        - completed
+
+    TodoCreate:
+      type: object
+      properties:
+        userId:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "Buy milk"
+        completed:
+          type: boolean
+          example: false
+      required:
+        - userId
+        - title
+        - completed
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Leanne Graham"
+        username:
+          type: string
+          example: "Bret"
+        email:
+          type: string
+          format: email
+          example: "Sincere@april.biz"
+        address:
+          $ref: '#/components/schemas/Address'
+        phone:
+          type: string
+          example: "1-770-736-8031 x56442"
+        website:
+          type: string
+          example: "hildegard.org"
+        company:
+          $ref: '#/components/schemas/Company'
+      required:
+        - id
+        - name
+        - username
+        - email
+
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          example: "Kulas Light"
+        suite:
+          type: string
+          example: "Apt. 556"
+        city:
+          type: string
+          example: "Gwenborough"
+        zipcode:
+          type: string
+          example: "92998-3874"
+        geo:
+          $ref: '#/components/schemas/Geo'
+
+    Geo:
+      type: object
+      properties:
+        lat:
+          type: string
+          example: "-37.3159"
+        lng:
+          type: string
+          example: "81.1496"
+
+    Company:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "Romaguera-Crona"
+        catchPhrase:
+          type: string
+          example: "Multi-layered client-server neural-net"
+        bs:
+          type: string
+          example: "harness real-time e-markets"

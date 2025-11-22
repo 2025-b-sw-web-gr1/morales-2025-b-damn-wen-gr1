@@ -1,0 +1,63 @@
+meta {
+  name: Create Player
+  type: http
+  seq: 8
+}
+
+post {
+  url: https://api.ejemplo.com/players
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Pedri González",
+    "position": "Mediocampista",
+    "number": 8,
+    "age": 21,
+    "teamId": 1
+  }
+}
+
+docs {
+  # Crear Nuevo Jugador
+  
+  Este endpoint crea un nuevo jugador y lo asigna a un equipo existente.
+  
+  ## Body (JSON)
+  ```json
+  {
+    "name": "Pedri González",
+    "position": "Mediocampista",
+    "number": 8,
+    "age": 21,
+    "teamId": 1
+  }
+  ```
+  
+  ## Respuesta Exitosa (201)
+  ```json
+  {
+    "id": 5,
+    "name": "Pedri González",
+    "position": "Mediocampista",
+    "number": 8,
+    "age": 21,
+    "teamId": 1
+  }
+  ```
+  
+  ## Campos Requeridos
+  - `name`: Nombre del jugador (mínimo 3 caracteres)
+  - `position`: Posición (Portero, Defensa, Mediocampista, Delantero)
+  - `teamId`: ID del equipo al que pertenece
+  
+  ## Campos Opcionales
+  - `number`: Número de camiseta (1-99)
+  - `age`: Edad del jugador (16-45)
+}

@@ -1,0 +1,49 @@
+meta {
+  name: Get All Players
+  type: http
+  seq: 6
+}
+
+get {
+  url: https://api.ejemplo.com/players
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+docs {
+  # Obtener Todos los Jugadores
+  
+  Este endpoint retorna una lista completa de todos los jugadores registrados en la base de datos.
+  
+  ## Respuesta Exitosa (200)
+  ```json
+  [
+    {
+      "id": 1,
+      "name": "Lionel Messi",
+      "position": "Delantero",
+      "number": 10,
+      "age": 36,
+      "teamId": 1
+    },
+    {
+      "id": 2,
+      "name": "Cristiano Ronaldo",
+      "position": "Delantero",
+      "number": 7,
+      "age": 38,
+      "teamId": 2
+    }
+  ]
+  ```
+  
+  ## Posiciones válidas
+  - Portero
+  - Defensa
+  - Mediocampista
+  - Delantero
+}

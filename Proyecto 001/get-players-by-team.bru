@@ -1,0 +1,58 @@
+meta {
+  name: Get Players By Team
+  type: http
+  seq: 11
+}
+
+get {
+  url: https://api.ejemplo.com/teams/1/players
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+docs {
+  # Obtener Jugadores de un Equipo
+  
+  Este endpoint retorna todos los jugadores que pertenecen a un equipo específico.
+  Demuestra la relación **1 a muchos** (1 equipo tiene muchos jugadores).
+  
+  ## Parámetros
+  - `id` (path): ID único del equipo
+  
+  ## Respuesta Exitosa (200)
+  ```json
+  [
+    {
+      "id": 1,
+      "name": "Lionel Messi",
+      "position": "Delantero",
+      "number": 10,
+      "age": 36,
+      "teamId": 1
+    },
+    {
+      "id": 2,
+      "name": "Gerard Piqué",
+      "position": "Defensa",
+      "number": 3,
+      "age": 36,
+      "teamId": 1
+    }
+  ]
+  ```
+  
+  ## Respuesta Error (404)
+  ```json
+  {
+    "error": "Equipo no encontrado"
+  }
+  ```
+  
+  ## Notas
+  - Si el equipo existe pero no tiene jugadores, retorna un array vacío []
+  - Este es el endpoint clave que demuestra la relación 1:N
+}

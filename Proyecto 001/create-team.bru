@@ -1,0 +1,55 @@
+meta {
+  name: Create Team
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://api.ejemplo.com/teams
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Manchester United",
+    "country": "Inglaterra",
+    "founded": 1878,
+    "stadium": "Old Trafford"
+  }
+}
+
+docs {
+  # Crear Nuevo Equipo
+  
+  Este endpoint crea un nuevo equipo de fútbol en la base de datos.
+  
+  ## Body (JSON)
+  ```json
+  {
+    "name": "Manchester United",
+    "country": "Inglaterra",
+    "founded": 1878,
+    "stadium": "Old Trafford"
+  }
+  ```
+  
+  ## Respuesta Exitosa (201)
+  ```json
+  {
+    "id": 3,
+    "name": "Manchester United",
+    "country": "Inglaterra",
+    "founded": 1878,
+    "stadium": "Old Trafford"
+  }
+  ```
+  
+  ## Campos Requeridos
+  - `name`: Nombre del equipo (mínimo 3 caracteres)
+  - `country`: País del equipo (mínimo 3 caracteres)
+}
